@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To Do List</title>
+  <style>
+      .harry {
+	color: white;
+        font-size: 40pt;
+	background-color: #00008B;
+      }
+      .potter {
+	color: white;
+        font-size: 20pt;
+	background-color: #00008B;
+      }
+    </style>
+  <script>
+    function addItem() {
+      var newItem = document.createElement("div");
+      newItem.innerHTML = document.getElementById("box").value;
+      newItem.onclick = removeItem;
+      document.getElementById("list").appendChild(newItem);
+      saveList();
+    }
+    function removeItem() {
+      document.getElementById("list").removeChild(this);
+      saveList();
+    }
+    function saveList() {
+      localStorage.storedList = document.getElementById("list").innerHTML;
+    }
+    function loadList() {
+      document.getElementById("list").innerHTML = localStorage.storedList;
+      for(var i = 0; i < list.children.length; i++) {
+        list.children[i].onclick = removeItem;
+      }
+    }
+  </script>
+</head>
+<body bgcolor=aqua>
+  <h1 class="harry"><center>To Do List</center></h1>
+  <input type="text" id="box">
+  
+  <input type="button" value="Add Item" onclick="addItem();">
+  <br><br>
+  <div id="list" class="potter"></div>
+  <br><br><br>
+  <font size=3>You can add item by typing in the box and clicking on Add Item button.
+  You can remove any item by clicking on the item.</font>
+  <script>
+    if(localStorage.storedList) {
+      loadList();
+    }
+  </script>
+</body>
+</html>
